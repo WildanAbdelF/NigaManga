@@ -66,7 +66,7 @@ function MangaListContent() {
     <div className="min-h-screen pt-16 pb-8">
       <div className="w-full px-6 sm:px-10 lg:px-16">
         {/* Header */}
-        <div className="mb-6">
+        <div className="mb-6 mt-10">
           <div className="flex items-center gap-3 mb-2">
             <div className="w-1.5 h-7 bg-[#f0c929] rounded-full" />
             <h1 className="text-2xl sm:text-3xl font-bold text-white">Browse Manga</h1>
