@@ -63,58 +63,67 @@ function MangaListContent() {
   };
 
   return (
-    <div className="min-h-screen pt-20 pb-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen pt-16 pb-8">
+      <div className="w-full px-6 sm:px-10 lg:px-16">
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-white mb-2">Browse Manga</h1>
-          <p className="text-gray-400">Browse the entire collection of manga, manhwa, and manhua.</p>
+        <div className="mb-6">
+          <div className="flex items-center gap-3 mb-2">
+            <div className="w-1.5 h-7 bg-[#f0c929] rounded-full" />
+            <h1 className="text-2xl sm:text-3xl font-bold text-white">Browse Manga</h1>
+          </div>
+          <p className="text-gray-400 text-sm ml-5">Browse the entire collection of manga, manhwa, and manhua.</p>
         </div>
 
         {/* Search and Filters */}
-        <div className="mb-6 space-y-4">
+        <div className="mb-6">
           {/* Filter Row */}
-          <div className="flex flex-wrap gap-4 items-center">
+          <div className="flex flex-wrap gap-3 items-end bg-[#1a1a2e]/50 p-4 rounded-xl border border-[#2a2a3e]">
             {/* Type Filter */}
-            <select
-              value={currentType}
-              onChange={(e) => updateFilters('type', e.target.value)}
-              className="px-4 py-2 bg-[#1a1a2e] border border-[#2a2a3e] rounded-lg text-white text-sm focus:outline-none focus:border-[#f0c929]"
-            >
-              <option value="manga">Manga</option>
-              <option value="manhwa">Manhwa</option>
-              <option value="manhua">Manhua</option>
-            </select>
+            <div className="flex flex-col gap-1.5">
+              <label className="text-xs text-gray-400 font-medium">Type</label>
+              <select
+                value={currentType}
+                onChange={(e) => updateFilters('type', e.target.value)}
+                className="px-3 py-2 bg-[#0f0f1a] border border-[#2a2a3e] rounded-lg text-white text-sm focus:outline-none focus:border-[#f0c929] transition-all cursor-pointer"
+              >
+                <option value="manga">Manga</option>
+                <option value="manhwa">Manhwa</option>
+                <option value="manhua">Manhua</option>
+              </select>
+            </div>
 
             {/* Sort Filter */}
-            <select
-              value={currentSort}
-              onChange={(e) => updateFilters('sort', e.target.value)}
-              className="px-4 py-2 bg-[#1a1a2e] border border-[#2a2a3e] rounded-lg text-white text-sm focus:outline-none focus:border-[#f0c929]"
-            >
-              <option value="popular">Popular</option>
-              <option value="latest">Latest Updates</option>
-            </select>
+            <div className="flex flex-col gap-1.5">
+              <label className="text-xs text-gray-400 font-medium">Sort By</label>
+              <select
+                value={currentSort}
+                onChange={(e) => updateFilters('sort', e.target.value)}
+                className="px-3 py-2 bg-[#0f0f1a] border border-[#2a2a3e] rounded-lg text-white text-sm focus:outline-none focus:border-[#f0c929] transition-all cursor-pointer"
+              >
+                <option value="popular">Popular</option>
+                <option value="latest">Latest Updates</option>
+              </select>
+            </div>
 
             {/* View Mode Toggle */}
-            <div className="ml-auto flex gap-2">
+            <div className="ml-auto flex gap-1.5">
               <button
                 onClick={() => setViewMode('grid')}
-                className={`p-2 rounded-lg transition-colors ${
-                  viewMode === 'grid' ? 'bg-[#f0c929] text-[#0f0f1a]' : 'bg-[#1a1a2e] text-white'
+                className={`p-2 rounded-lg transition-all ${
+                  viewMode === 'grid' ? 'bg-[#f0c929] text-[#0f0f1a]' : 'bg-[#0f0f1a] text-white border border-[#2a2a3e] hover:border-[#f0c929]'
                 }`}
               >
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
                 </svg>
               </button>
               <button
                 onClick={() => setViewMode('list')}
-                className={`p-2 rounded-lg transition-colors ${
-                  viewMode === 'list' ? 'bg-[#f0c929] text-[#0f0f1a]' : 'bg-[#1a1a2e] text-white'
+                className={`p-2 rounded-lg transition-all ${
+                  viewMode === 'list' ? 'bg-[#f0c929] text-[#0f0f1a]' : 'bg-[#0f0f1a] text-white border border-[#2a2a3e] hover:border-[#f0c929]'
                 }`}
               >
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" />
                 </svg>
               </button>
@@ -124,8 +133,8 @@ function MangaListContent() {
 
         {/* Loading State */}
         {loading && (
-          <div className="flex items-center justify-center py-20">
-            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#f0c929]"></div>
+          <div className="flex items-center justify-center py-16">
+            <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-[#f0c929]"></div>
           </div>
         )}
 
@@ -134,8 +143,8 @@ function MangaListContent() {
           <>
             <div className={
               viewMode === 'grid'
-                ? 'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4'
-                : 'flex flex-col gap-4'
+                ? 'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-4'
+                : 'flex flex-col gap-3'
             }>
               {mangaList.map((manga) => (
                 <MangaCard key={manga.manga_id} manga={manga} showDescription={viewMode === 'list'} />
@@ -144,11 +153,13 @@ function MangaListContent() {
 
             {/* Pagination */}
             {metaData && metaData.total_page && metaData.total_page > 1 && (
-              <Pagination
-                currentPage={currentPage}
-                totalPages={metaData.total_page}
-                onPageChange={handlePageChange}
-              />
+              <div className="mt-6">
+                <Pagination
+                  currentPage={currentPage}
+                  totalPages={metaData.total_page}
+                  onPageChange={handlePageChange}
+                />
+              </div>
             )}
           </>
         )}
@@ -161,7 +172,7 @@ export default function MangaListPage() {
   return (
     <Suspense fallback={
       <div className="min-h-screen flex items-center justify-center pt-16">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#f0c929]"></div>
+        <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-[#f0c929]"></div>
       </div>
     }>
       <MangaListContent />

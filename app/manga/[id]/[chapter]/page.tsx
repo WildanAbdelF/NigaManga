@@ -69,19 +69,19 @@ export default function ReaderPage() {
   return (
     <div className="min-h-screen bg-black">
       {/* Top Navigation Bar */}
-      <div className={`fixed top-0 left-0 right-0 z-50 bg-[#0f0f1a]/95 backdrop-blur-md border-b border-[#2a2a3e] transition-transform duration-300 ${showControls ? 'translate-y-0' : '-translate-y-full'}`}>
-        <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-          <div className="flex items-center gap-4">
+      <div className={`fixed top-0 left-0 right-0 z-50 bg-[#0f0f1a]/95 backdrop-blur-xl border-b border-[#2a2a3e]/50 transition-transform duration-300 ${showControls ? 'translate-y-0' : '-translate-y-full'}`}>
+        <div className="w-full px-6 sm:px-10 py-3 flex items-center justify-between">
+          <div className="flex items-center gap-3 sm:gap-4">
             <Link
               href={`/manga/${mangaId}`}
-              className="p-2 hover:bg-[#1a1a2e] rounded-lg transition-colors"
+              className="p-2.5 hover:bg-[#1a1a2e] rounded-xl transition-colors"
             >
               <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
             </Link>
             <div>
-              <h1 className="text-white font-semibold line-clamp-1">
+              <h1 className="text-white font-semibold line-clamp-1 text-base">
                 Chapter {chapter.chapter_number}{chapter.chapter_title ? `: ${chapter.chapter_title}` : ''}
               </h1>
               <p className="text-gray-400 text-sm line-clamp-1">{images.length} pages</p>
@@ -89,19 +89,19 @@ export default function ReaderPage() {
           </div>
 
           {/* Reading Mode Toggle */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 bg-[#1a1a2e] p-1 rounded-xl">
             <button
               onClick={() => setReadingMode('vertical')}
-              className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
-                readingMode === 'vertical' ? 'bg-[#f0c929] text-[#0f0f1a]' : 'bg-[#1a1a2e] text-white'
+              className={`px-3 sm:px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                readingMode === 'vertical' ? 'bg-[#f0c929] text-[#0f0f1a]' : 'text-white hover:bg-[#2a2a3e]'
               }`}
             >
               Vertical
             </button>
             <button
               onClick={() => setReadingMode('horizontal')}
-              className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
-                readingMode === 'horizontal' ? 'bg-[#f0c929] text-[#0f0f1a]' : 'bg-[#1a1a2e] text-white'
+              className={`px-3 sm:px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                readingMode === 'horizontal' ? 'bg-[#f0c929] text-[#0f0f1a]' : 'text-white hover:bg-[#2a2a3e]'
               }`}
             >
               Horizontal
@@ -112,7 +112,7 @@ export default function ReaderPage() {
 
       {/* Images Container */}
       <div 
-        className={`pt-16 ${readingMode === 'vertical' ? 'pb-20' : 'min-h-screen flex items-center justify-center'}`}
+        className={`pt-20 ${readingMode === 'vertical' ? 'pb-24' : 'min-h-screen flex items-center justify-center'}`}
         onClick={handleImageClick}
       >
         {readingMode === 'vertical' ? (
@@ -139,12 +139,12 @@ export default function ReaderPage() {
       </div>
 
       {/* Bottom Navigation Bar */}
-      <div className={`fixed bottom-0 left-0 right-0 z-50 bg-[#0f0f1a]/95 backdrop-blur-md border-t border-[#2a2a3e] transition-transform duration-300 ${showControls ? 'translate-y-0' : 'translate-y-full'}`}>
-        <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div className={`fixed bottom-0 left-0 right-0 z-50 bg-[#0f0f1a]/95 backdrop-blur-xl border-t border-[#2a2a3e]/50 transition-transform duration-300 ${showControls ? 'translate-y-0' : 'translate-y-full'}`}>
+        <div className="w-full px-6 sm:px-10 py-3 flex items-center justify-between">
           <button
             onClick={() => chapter.prev_chapter_id && navigateChapter(chapter.prev_chapter_id)}
             disabled={!chapter.prev_chapter_id}
-            className="flex items-center gap-2 px-4 py-2 bg-[#1a1a2e] text-white rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-[#2a2a3e] transition-colors"
+            className="flex items-center gap-2 px-4 py-2.5 bg-[#1a1a2e] text-white text-base rounded-xl border border-[#2a2a3e] disabled:opacity-50 disabled:cursor-not-allowed hover:bg-[#f0c929] hover:text-[#0f0f1a] hover:border-[#f0c929] transition-all"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -152,14 +152,14 @@ export default function ReaderPage() {
             <span className="hidden sm:inline">Ch. {chapter.prev_chapter_number || 'N/A'}</span>
           </button>
 
-          <span className="text-gray-400 text-sm">
+          <span className="text-gray-400 text-base px-4 py-2.5 bg-[#1a1a2e] rounded-xl border border-[#2a2a3e]">
             {images.length} pages
           </span>
 
           <button
             onClick={() => chapter.next_chapter_id && navigateChapter(chapter.next_chapter_id)}
             disabled={!chapter.next_chapter_id}
-            className="flex items-center gap-2 px-4 py-2 bg-[#1a1a2e] text-white rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-[#2a2a3e] transition-colors"
+            className="flex items-center gap-2 px-4 py-2.5 bg-[#1a1a2e] text-white text-base rounded-xl border border-[#2a2a3e] disabled:opacity-50 disabled:cursor-not-allowed hover:bg-[#f0c929] hover:text-[#0f0f1a] hover:border-[#f0c929] transition-all"
           >
             <span className="hidden sm:inline">Ch. {chapter.next_chapter_number || 'N/A'}</span>
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -189,7 +189,7 @@ function HorizontalReader({ images }: { images: string[] }) {
   }, []);
 
   return (
-    <div className="relative w-full h-[calc(100vh-8rem)] flex items-center justify-center">
+    <div className="relative w-full h-[calc(100vh-7rem)] flex items-center justify-center">
       {/* Current Page */}
       <div className="relative max-h-full max-w-full">
         <Image
@@ -197,7 +197,7 @@ function HorizontalReader({ images }: { images: string[] }) {
           alt={`Page ${currentPage + 1}`}
           width={1000}
           height={1400}
-          className="max-h-[calc(100vh-8rem)] w-auto object-contain"
+          className="max-h-[calc(100vh-7rem)] w-auto object-contain"
           priority
           unoptimized
         />
@@ -207,24 +207,24 @@ function HorizontalReader({ images }: { images: string[] }) {
       <button
         onClick={(e) => { e.stopPropagation(); goToPrev(); }}
         disabled={currentPage === 0}
-        className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center bg-black/50 rounded-full disabled:opacity-30 hover:bg-black/70 transition-colors"
+        className="absolute left-4 sm:left-6 top-1/2 -translate-y-1/2 w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center bg-black/60 backdrop-blur-sm rounded-full disabled:opacity-30 hover:bg-[#f0c929] hover:text-[#0f0f1a] text-white transition-all border border-white/20"
       >
-        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
         </svg>
       </button>
       <button
         onClick={(e) => { e.stopPropagation(); goToNext(); }}
         disabled={currentPage === images.length - 1}
-        className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center bg-black/50 rounded-full disabled:opacity-30 hover:bg-black/70 transition-colors"
+        className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center bg-black/60 backdrop-blur-sm rounded-full disabled:opacity-30 hover:bg-[#f0c929] hover:text-[#0f0f1a] text-white transition-all border border-white/20"
       >
-        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
         </svg>
       </button>
 
       {/* Page Counter */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 px-4 py-2 bg-black/70 rounded-full text-white text-sm">
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 px-5 py-2 bg-black/70 backdrop-blur-sm rounded-full text-white text-sm font-medium border border-white/20">
         {currentPage + 1} / {images.length}
       </div>
     </div>

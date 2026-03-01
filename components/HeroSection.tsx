@@ -30,7 +30,7 @@ export default function HeroSection({ mangaList }: HeroSectionProps) {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % spotlightManga.length);
-    }, 5000);
+    }, 6000);
     return () => clearInterval(timer);
   }, [spotlightManga.length]);
 
@@ -42,73 +42,86 @@ export default function HeroSection({ mangaList }: HeroSectionProps) {
   const goToNext = () => setCurrentIndex((prev) => (prev + 1) % spotlightManga.length);
 
   return (
-    <section className="relative h-[70vh] min-h-[500px] overflow-hidden">
+    <section className="relative h-[50vh] min-h-[400px] overflow-hidden w-full">
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
           src={currentManga.cover_image_url}
           alt={currentManga.title}
           fill
-          className="object-cover object-center"
+          className="object-cover object-center scale-105 transition-transform duration-700"
           priority
         />
-        {/* Overlay gradients */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0f0f1a] via-[#0f0f1a]/70 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0f0f1a] via-transparent to-[#0f0f1a]/50" />
-        {/* Color overlay for visual effect */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-transparent to-red-900/20" />
+        {/* Overlay gradients - Reference style */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0f0f1a] via-[#0f0f1a]/85 to-[#0f0f1a]/20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0f0f1a] via-transparent to-[#0f0f1a]/60" />
       </div>
 
       {/* Content */}
-      <div className="relative z-10 h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center">
-        <div className="max-w-xl">
+      <div className="relative z-10 h-full w-full px-6 sm:px-10 lg:px-16 flex items-center">
+        <div className="max-w-2xl">
           {/* Spotlight Badge */}
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#f0c929] rounded-full mb-4">
-            <svg className="w-4 h-4 text-[#0f0f1a]" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-            </svg>
-            <span className="text-sm font-bold text-[#0f0f1a]">SPOTLIGHT #{currentIndex + 1}</span>
+          <div className="inline-flex items-center gap-1.5 mb-3">
+            <div className="flex items-center gap-1.5 px-3 py-1.5 bg-[#f0c929] rounded-md shadow-lg">
+              <svg className="w-3.5 h-3.5 text-[#0f0f1a]" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+              </svg>
+              <span className="text-[10px] font-bold text-[#0f0f1a] uppercase tracking-wide">Spotlight</span>
+            </div>
+            <span className="text-[#f0c929] text-base font-bold">#{currentIndex + 1}</span>
           </div>
 
           {/* Title */}
-          <h1 className="text-4xl sm:text-5xl font-bold text-white mb-2 leading-tight">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-2 leading-tight line-clamp-2 drop-shadow-xl">
             {currentManga.title}
           </h1>
 
           {/* Subtitle */}
-          <p className="text-gray-400 mb-4">{currentManga.alternative_title || currentManga.title}</p>
+          <p className="text-gray-400 text-sm mb-3 line-clamp-1">{currentManga.alternative_title || currentManga.title}</p>
 
-          {/* Meta Info */}
-          <div className="flex flex-wrap items-center gap-3 mb-4">
-            <span className="px-3 py-1 bg-[#1a1a2e] text-white text-sm rounded">{getFormatType(currentManga)}</span>
-            <span className="text-gray-400 text-sm">{formatViewCount(currentManga.view_count)} views</span>
-            <span className="px-3 py-1 bg-[#f0c929] text-[#0f0f1a] text-sm font-semibold rounded">
-              CH. {currentManga.latest_chapter_number}
+          {/* Meta Info - Reference Style with colored badges */}
+          <div className="flex flex-wrap items-center gap-1.5 mb-3">
+            <span className="px-2 py-1 bg-[#1a1a2e] text-white text-[10px] font-semibold rounded-md border border-[#2a2a3e]">
+              {getFormatType(currentManga)}
+            </span>
+            <span className="text-gray-400 text-xs">|</span>
+            <span className="flex items-center gap-1 text-gray-300 text-[10px]">
+              <svg className="w-3 h-3 text-[#f0c929]" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+                <path fillRule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clipRule="evenodd" />
+              </svg>
+              {formatViewCount(currentManga.view_count)} views
+            </span>
+            <span className="text-gray-400 text-xs">|</span>
+            <span className="px-2 py-1 bg-[#22c55e]/20 text-[#22c55e] text-[10px] font-bold rounded-md border border-[#22c55e]/30">
+              CH: {currentManga.latest_chapter_number}+
+            </span>
+            <span className="px-2 py-1 bg-[#3b82f6]/20 text-[#3b82f6] text-[10px] font-bold rounded-md border border-[#3b82f6]/30">
+              {currentManga.status || 'Ongoing'}
             </span>
           </div>
 
           {/* Description */}
-          <p className="text-gray-300 text-sm mb-6 line-clamp-3 max-w-md">
+          <p className="text-gray-300 text-xs sm:text-sm mb-4 line-clamp-2 max-w-xl leading-relaxed">
             {currentManga.description || 'Dive into an amazing manga adventure. Click to read more and discover the story!'}
           </p>
 
-          {/* CTA Buttons */}
-          <div className="flex gap-3">
+          {/* CTA Buttons - Larger and matching reference */}
+          <div className="flex flex-wrap gap-3">
             <Link
               href={`/manga/${currentManga.manga_id}`}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-[#f0c929] text-[#0f0f1a] font-semibold rounded-lg hover:bg-[#d4b12a] transition-colors"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-[#f0c929] text-[#0f0f1a] text-sm font-bold rounded-sm hover:bg-[#ffd93d] transition-all shadow-lg hover:shadow-xl hover:scale-105"
             >
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
-                <path fillRule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clipRule="evenodd" />
+              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
               </svg>
               Read Now
             </Link>
             <Link
               href={`/manga/${currentManga.manga_id}`}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-transparent border border-white/30 text-white font-semibold rounded-lg hover:bg-white/10 transition-colors"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-transparent border-2 border-white/30 text-white text-sm font-semibold rounded-sm hover:bg-white/10 hover:border-white/50 transition-all backdrop-blur-sm hover:scale-105"
             >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
               More Info
@@ -117,40 +130,40 @@ export default function HeroSection({ mangaList }: HeroSectionProps) {
         </div>
       </div>
 
-      {/* Navigation Arrows */}
+      {/* Navigation Arrows - Larger and more prominent
       <button
         onClick={goToPrev}
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center bg-black/50 rounded-full hover:bg-black/70 transition-colors"
+        className="absolute left-4 sm:left-8 lg:left-12 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center bg-black/50 backdrop-blur-sm rounded-full hover:bg-[#f0c929] hover:text-[#0f0f1a] text-white transition-all border border-white/20 hover:border-[#f0c929] hover:scale-110"
       >
-        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
         </svg>
       </button>
       <button
         onClick={goToNext}
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center bg-black/50 rounded-full hover:bg-black/70 transition-colors"
+        className="absolute right-4 sm:right-8 lg:right-12 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center bg-black/50 backdrop-blur-sm rounded-full hover:bg-[#f0c929] hover:text-[#0f0f1a] text-white transition-all border border-white/20 hover:border-[#f0c929] hover:scale-110"
       >
-        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
         </svg>
-      </button>
+      </button> */}
 
-      {/* Dots Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+      {/* Dots Indicator - Larger and spaced */}
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex gap-1.5">
         {spotlightManga.map((_, index) => (
           <button
             key={index}
             onClick={() => goToSlide(index)}
-            className={`h-2 rounded-full transition-all ${
-              index === currentIndex ? 'w-8 bg-[#f0c929]' : 'w-2 bg-white/50 hover:bg-white/70'
+            className={`h-2 rounded-full transition-all duration-300 ${
+              index === currentIndex ? 'w-8 bg-[#f0c929]' : 'w-2 bg-white/40 hover:bg-white/60'
             }`}
           />
         ))}
       </div>
 
       {/* Slide Counter */}
-      <div className="absolute bottom-8 right-8 z-20 text-white/70 text-sm">
-        <span className="text-white font-bold">#{currentIndex + 1}</span> of {spotlightManga.length}
+      <div className="absolute bottom-4 right-6 sm:right-10 lg:right-12 z-20 text-white/70 text-xs">
+        <span className="text-[#f0c929] font-bold text-lg">#{currentIndex + 1}</span> <span className="text-gray-400">/ {spotlightManga.length}</span>
       </div>
     </section>
   );

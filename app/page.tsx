@@ -35,7 +35,7 @@ export default async function Home() {
   const heroList = recommendedList.length > 0 ? recommendedList : popularList;
 
   return (
-    <div className="min-h-screen pt-16">
+    <div className="min-h-screen pt-14">
       {/* Hero Section */}
       <HeroSection mangaList={heroList} />
 
@@ -51,10 +51,10 @@ export default async function Home() {
 
       {/* Recommended Manga Grid */}
       {recommendedList.length > 0 && (
-        <section className="py-8">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="py-4 md:py-6">
+          <div className="w-full px-6 sm:px-10 lg:px-16">
             <SectionTitle title="Recommended Manga" viewAllHref="/manga" />
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-4 lg:gap-5">
               {recommendedList.slice(0, 12).map((manga) => (
                 <MangaCard key={manga.manga_id} manga={manga} />
               ))}
@@ -64,9 +64,9 @@ export default async function Home() {
       )}
 
       {/* Footer */}
-      <footer className="py-8 border-t border-[#2a2a3e] mt-8">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-gray-500 text-sm">
+      <footer className="py-4 border-t border-[#2a2a3e] mt-4">
+        <div className="w-full px-6 sm:px-10 lg:px-16 text-center">
+          <p className="text-gray-500 text-xs sm:text-sm">
             © 2026 NigaManga. All rights reserved. Data from Sansekai API.
           </p>
         </div>
