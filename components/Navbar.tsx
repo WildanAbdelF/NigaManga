@@ -21,7 +21,7 @@ export default function Navbar() {
       <div className="w-full px-6 sm:px-10 lg:px-16">
         <div className="flex items-center justify-between h-14">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-1.5 group">
+          <Link href="/" className="flex items-center group">
             <span className="text-lg sm:text-xl font-bold text-[#f0c929] group-hover:text-[#ffd93d] transition-colors">Niga</span>
             <span className="text-lg sm:text-xl font-bold text-white">Manga</span>
           </Link>
